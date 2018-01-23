@@ -7,7 +7,13 @@
           <div class="voter-list-item-wrap">
             <p>{{ voter.name }}</p>
             <p>{{ voter.email }}</p>
-            <p><button class="red">Vote</button></p>
+            <p>
+              <button class="red"
+                @click.prevent="vote(voter.id)"
+                :data-key="voter.id">
+                  Vote
+              </button>
+            </p>
           </div>
         </li>
       </ul>
@@ -15,10 +21,10 @@
     <div class="voter-wrap">
       <h1>Voted</h1>
       <ul class="voter-list">
-        <li class="voter-list-item">
+        <li class="voter-list-item" v-for="voter in voted" :key="voter.id">
           <div class="voter-list-item-wrap">
-            <p>Angelo Miranda</p>
-            <p>email: angelo@mastercard.com</p>
+            <p>{{ voter.name }}</p>
+            <p>{{ voter.email }}</p>
             <p><button class="red">Remove</button></p>
           </div>
         </li>
@@ -26,30 +32,31 @@
     </div>
     <div class="voter-wrap voter-wrap-last">
       <h1>Total votes</h1>
-      <p>Number of voters: 1</p>
+      <p>Number of voters: {{ getVoters.length }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
-      voters: []
+      message: '',
+      voters: this.$store.state.voters,
+      voted: this.$store.state.voted
     }
   },
-  methods: {
-  },
-  mounted () {
-    axios.get('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.data)
-      .then(data => {
-        this.voters = data
-      })
-  }
+  computed: mapGetters([
+    'getVoters'
+  ]),
+  methods: mapActions({
+    increment: 'increment',
+    vote (event, id) {
+      this.$store.dispatch('vote', id)
+    }
+  })
 }
 </script>
 
