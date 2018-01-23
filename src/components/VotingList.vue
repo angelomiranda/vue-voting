@@ -52,7 +52,6 @@ export default {
     'getVoters'
   ]),
   methods: mapActions({
-    increment: 'increment',
     vote (event, id) {
       this.$store.dispatch('vote', id)
     }
