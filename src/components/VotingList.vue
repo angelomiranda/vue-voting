@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="voter-wrap">
-      <h1>Voters</h1>
+      <h1>Potential Voters</h1>
       <ul class="voter-list">
         <li class="voter-list-item" v-for="voter in voters" :key="voter.id">
           <div class="voter-list-item-wrap">
