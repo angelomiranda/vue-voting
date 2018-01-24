@@ -1,4 +1,4 @@
-# vue-voting
+# Voting Application using Vue.js
 
 > A Vue.js project
 
@@ -23,5 +23,9 @@ npm run unit
 # run all tests
 npm test
 ```
+
+![Voting App](https://i.imgur.com/ScZB3iv.png)
+
+## Note: Not complete yet, still work on progress...
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
