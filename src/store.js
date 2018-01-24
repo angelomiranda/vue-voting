@@ -9,6 +9,7 @@ const state = {
   voted: []
 }
 
+// This is sync
 const mutations = {
   vote: (state, id) => {
     // Get the voter that voted
@@ -17,18 +18,22 @@ const mutations = {
     })
 
     // Remove the voter that voted
-    const index = state.voters.findIndex(o => o.id === id)
+    const index = state.voters.findIndex(voter => voter.id === id)
     if (index !== -1) state.voters.splice(index, 1)
 
     state.voted.push(voter)
+  },
+  removeVoter (state, voter) {
+    // Add the removed voter back to the potential voter list
+    state.voters.push(voter)
+    // Remove the voted person
+    const index = state.voted.findIndex(votee => votee.id === voter.id)
+    if (index !== -1) state.voted.splice(index, 1)
   }
 }
 
-const actions = {
-  vote: ({ commit }, id) => {
-    commit('vote', id)
-  }
-}
+// Actions are async
+const actions = {}
 
 const getters = {
   getVoters: state => state.voters

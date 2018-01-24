@@ -25,7 +25,10 @@
           <div class="voter-list-item-wrap">
             <p>{{ voter.name }}</p>
             <p>{{ voter.email }}</p>
-            <p><button class="red">Remove</button></p>
+            <p>
+              <button class="red"
+                @click="removeVoter(voter)">Remove</button>
+            </p>
           </div>
         </li>
       </ul>
@@ -51,9 +54,13 @@ export default {
   computed: mapGetters([
     'getVoters'
   ]),
-  methods: mapActions({
+  methods: Object.assign({}, mapActions({
     vote (event, id) {
-      this.$store.dispatch('vote', id)
+      this.$store.commit('vote', id)
+    }
+  }), {
+    removeVoter (voter) {
+      this.$store.commit('removeVoter', voter)
     }
   })
 }
