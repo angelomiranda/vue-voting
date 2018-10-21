@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1>Vue Voting App</h1>
     <router-view/>
   </div>
 </template>
